@@ -18,7 +18,7 @@ sudo apt-get install fceux
 Now the Super Mario Bros NES environment has to be set up. We using [Philip Paquette's Super Mario Bros](https://github.com/ppaquette/gym-super-mario) implementation for gym with some modifications to run on the current OpenAI Gym version.
 Follow [Issue 6](https://github.com/ppaquette/gym-super-mario/issues/6) to get the Mario NES environment up and running.
 
-To match the default settings of this project modify the ''gym/envs/__init__.py'' to register env
+To match the default settings of this project modify the *gym/envs/__init__.py* to register env
 ```
 register(
      id='metaSuperMarioBros-1-1-v0',
@@ -48,11 +48,11 @@ The random processes behaves exactly like the non-random processes when there is
 
 Custom rewards are used to train the model more efficiently. They can be changed using the info dictionary or by modifying the wrappers file in *common/atari_wrappers.py*
 
-More arguments are mentioned in the file "train-mario.py".
+More arguments are mentioned in the file *train-mario.py*.
 
 ## Results
 After ~20 hours of training on 8 processes (7 Train, 1 Test) the game converges.
-This network is saved in "save/trained-models/mario_a3c_params.pkl". Move it outside, to the "save" folder, to run the trained model.
+This network is saved in *save/trained-models/mario_a3c_params.pkl*. Move it outside, to the *save* folder, to run the trained model.
 
 <img src="video/mario-level1.gif" width="300" height="300" border="10">    <img src="graphs/mario_train.jpeg" width="400" height="300"  border="10">
 
