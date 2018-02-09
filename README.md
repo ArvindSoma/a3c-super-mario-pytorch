@@ -15,7 +15,7 @@ sudo apt-get install -y python3-numpy python3-dev cmake zlib1g-dev libjpeg-dev x
 sudo apt-get install fceux
 ```
 
-Now the Super Mario Bros NES environment has to be set up. We using [Philip Paquette's Super Mario Bros](https://github.com/ppaquette/gym-super-mario) implementation for gym with some modifications to run on the current OpenAI Gym version.
+Now the Super Mario Bros NES environment has to be set up. We are using [Philip Paquette's Super Mario Bros](https://github.com/ppaquette/gym-super-mario) implementation for gym with some modifications to run on the current OpenAI Gym version.
 Follow [Issue 6](https://github.com/ppaquette/gym-super-mario/issues/6) to get the Mario NES environment up and running.
 
 To match the default settings of this project modify the *gym/envs/__init__.py* to register env
@@ -52,9 +52,10 @@ More arguments are mentioned in the file *train-mario.py*.
 
 ## Results
 After ~20 hours of training on 8 processes (7 Train, 1 Test) the game converges.
-This network is saved in *save/trained-models/mario_a3c_params.pkl*. Move it outside, to the *save* folder, to run the trained model.
 
 <img src="video/mario-level1.gif" width="300" height="270" border="10">    <img src="graphs/mario_train.jpeg" width="400" height="270"  border="10">
+
+This network is saved in *save/trained-models/mario_a3c_params.pkl*. Move it outside, to the *save* folder, to run the trained model.
 
 ## Repository References
 This project heavily relied on [ikostrikov/pytorch-a3c](https://github.com/ikostrikov/pytorch-a3c).
