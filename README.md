@@ -36,7 +36,7 @@ python3 train-mario.py --num-processes 8
 The program requires atleast a 8-Core system with atleast 16GB memory and 8GB GPU-RAM. 
 You can reduce the number of processes to run on a personal system, but expect the training time to increase drastically.
 ```
-python3 train-mario.py
+python3 train-mario.py --num-processes 2
 ```
 The program works on random and non-random processes so that the training converges faster. By default there are two non-random processes whcih can be changed using args.
 1 test process is created with remaining train processes. Test stores data in a CSV file inside save folder, which can be plotted later. 
