@@ -11,11 +11,11 @@ This project is based on the implementation of the paper [Asynchronous Methods f
 Install the following packages using the given commands
 ```
 sudo apt-get update
-sudo apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig
+sudo apt-get install -y python3-numpy python3-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python3-opengl libboost-all-dev libsdl2-dev swig
 sudo apt-get install fceux
 ```
 
-Now Super Mario Bros NES environment has to be set up. We are going to use [Philip Paquette's Super Mario Bros](https://github.com/ppaquette/gym-super-mario) implementation for gym with some modifications to run on the current OpenAI Gym version.
+Now the Super Mario Bros NES environment has to be set up. We using [Philip Paquette's Super Mario Bros](https://github.com/ppaquette/gym-super-mario) implementation for gym with some modifications to run on the current OpenAI Gym version.
 Follow [Issue 6](https://github.com/ppaquette/gym-super-mario/issues/6) to get the Mario NES environment up and running.
 
 To match the default settings of this project modify the ''gym/envs/__init__.py'' to register env
@@ -33,20 +33,28 @@ To train the network from scratch, use the following command
 python3 train-mario.py --num-processes 8
 ```
 
-This command requires atleast an 8-Core system with atleast 16GB memory and 8GB GPU-RAM. 
+This command requires atleast an 8-Core system with 16GB memory and 6GB GPU memory.
 You can reduce the number of processes to run on a personal system, but expect the training time to increase drastically.
 ```
 python3 train-mario.py --num-processes 2 --non-sample 1
 ```
-The program works on random and non-random processes so that the training converges faster. By default there are two non-random processes whcih can be changed using args.
-1 test process is created with remaining train processes. Test stores data in a CSV file inside save folder, which can be plotted later. 
 
-More arguments are mentioned in the file.
+This command requires atleast a 2-Core system with 4GB memory and 2GB GPU memory.
+
+1 test process is created with remaining train processes. Test stores data in a CSV file inside save folder, which can be plotted later
+
+The training process uses random and non-random processes so that it converges faster. By default there are two non-random processes, whcih can be changed using args.
+The random processes behaves exactly like the non-random processes when there is a clear difference in the output probabilities of the network. The non-random training processes exactly mimmic the test output, which helps train the network better.
+
+Custom rewards are used to train the model more efficiently. They can be changed using the info dictionary or by modifying the wrappers file in *common/atari_wrappers.py*
+
+More arguments are mentioned in the file "train-mario.py".
 
 ## Results
 After ~20 hours of training on 8 processes (7 Train, 1 Test) the game converges.
+This network is saved in "save/trained-models/mario_a3c_params.pkl". Move it outside, to the "save" folder, to run the trained model.
 
-![](video/mario-level1.gif)
+<img src="video/mario-level1.gif" width="300" height="300" border="10">    <img src="graphs/mario_train.jpeg" width="400" height="300"  border="10">
 
 ## Repository References
 This project heavily relied on [ikostrikov/pytorch-a3c](https://github.com/ikostrikov/pytorch-a3c).
