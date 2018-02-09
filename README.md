@@ -54,7 +54,7 @@ More arguments are mentioned in the file *train-mario.py*.
 After ~20 hours of training on 8 processes (7 Train, 1 Test) the game converges.
 This network is saved in *save/trained-models/mario_a3c_params.pkl*. Move it outside, to the *save* folder, to run the trained model.
 
-<img src="video/mario-level1.gif" width="300" height="300" border="10">    <img src="graphs/mario_train.jpeg" width="400" height="300"  border="10">
+<img src="video/mario-level1.gif" width="300" height="270" border="10">    <img src="graphs/mario_train.jpeg" width="400" height="270"  border="10">
 
 ## Repository References
 This project heavily relied on [ikostrikov/pytorch-a3c](https://github.com/ikostrikov/pytorch-a3c).
