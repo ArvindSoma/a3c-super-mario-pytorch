@@ -2,6 +2,9 @@
 
 This project is based on the implementation of the paper [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783) using custom training modifications. This project was created for the course [Deep Learning for Computer Vision](https://vision.in.tum.de/teaching/ws2017/dl4cv) held at TUM.
 
+
+<img src="video/mario-level1.gif" width="300" height="270" border="10">    <img src="graphs/mario_train.jpeg" width="400" height="270"  border="10">
+
 ## Prerequisites
 - Python3.5+
 - Pytorch
@@ -53,9 +56,7 @@ More arguments are mentioned in the file *train-mario.py*.
 ## Results
 After ~20 hours of training on 8 processes (7 Train, 1 Test) the game converges.
 
-<img src="video/mario-level1.gif" width="300" height="270" border="10">    <img src="graphs/mario_train.jpeg" width="400" height="270"  border="10">
-
-This network is saved in *save/trained-models/mario_a3c_params.pkl*. Move it outside, to the *save* folder, to run the trained model.
+The trained model is saved in *save/trained-models/mario_a3c_params.pkl*. Move it outside, to the *save* folder, to run the trained model.
 
 ## Repository References
 This project heavily relied on [ikostrikov/pytorch-a3c](https://github.com/ikostrikov/pytorch-a3c).
