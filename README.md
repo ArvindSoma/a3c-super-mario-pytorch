@@ -1,6 +1,6 @@
 # Reinforcement Learning on Super Mario Bros using A3C
 
-This project is based on the implementation of the paper [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783) using custom training modifications.
+This project is based on the implementation of the paper [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783) using custom training modifications. This project was created for the course [Deep Learning for Computer Vision](https://vision.in.tum.de/teaching/ws2017/dl4cv) held at TUM.
 
 ## Prerequisites
 - Python3.5+
@@ -32,15 +32,16 @@ To train the network from scratch, use the following command
 python3 train-mario.py --num-processes 8
 ```
 
-The program requires atleast a 8-Core system with atleast 16GB memory and 8GB GPU-RAM. You can reduce the number of processes to run on a personal system, but expect the training time to increase drastically.
+The program requires atleast a 8-Core system with atleast 16GB memory and 8GB GPU-RAM. 
+You can reduce the number of processes to run on a personal system, but expect the training time to increase drastically.
 ```
-python3 train-mario.py --num-processes 8
+python3 train-mario.py
 ```
-
-One test processes is created along with the rest train processes. Test stores data in a CSV file which can be plotted
+One test processes is created along with the rest train processes. Test stores data in a CSV file which can be plotted later.
+More arguments are mentioned in the file.
 
 ## Results
-After ~20 hours of training on 8 processes (1 Test, 7 Train) the game converges.
+After ~20 hours of training on 8 processes (7 Train, 1 Test) the game converges.
 
 ![](video/mario-level1.gif)
 
