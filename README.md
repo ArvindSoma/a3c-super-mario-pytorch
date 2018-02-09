@@ -1,4 +1,4 @@
-# Reinforcement Learning on Super Mario Bros using A3C
+# Reinforcement Learning on Super Mario Bros using A3C on GPU
 
 This project is based on the implementation of the paper [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783) using custom training modifications. This project was created for the course [Deep Learning for Computer Vision](https://vision.in.tum.de/teaching/ws2017/dl4cv) held at TUM.
 
@@ -15,8 +15,9 @@ sudo apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvf
 sudo apt-get install fceux
 ```
 
-Now we have to set up Super Mario Bros. We are going to use [Philip Paquette's Super Mario Bros](https://github.com/ppaquette/gym-super-mario) implementation for Gym with some modifications to run on the current OpenAI Gym version. 
+Now Super Mario Bros NES environment has to be set up. We are going to use [Philip Paquette's Super Mario Bros](https://github.com/ppaquette/gym-super-mario) implementation for gym with some modifications to run on the current OpenAI Gym version.
 Follow [Issue 6](https://github.com/ppaquette/gym-super-mario/issues/6) to get the Mario NES environment up and running.
+
 To match the default settings of this project modify the ''gym/envs/__init__.py'' to register env
 ```
 register(
@@ -24,7 +25,7 @@ register(
      entry_point='gym.envs.ppaquette_gym_super_mario:MetaSuperMarioBrosEnv',
 )
 ```
-No matter what 'id' is set, use the MetaSuperMarioBrosEnv entry point to remove frequent closing of the emulator.
+No matter what 'id' is set to, use the MetaSuperMarioBrosEnv entry point to remove frequent closing of the emulator.
 
 ## Training and Testing
 To train the network from scratch, use the following command
@@ -37,7 +38,9 @@ You can reduce the number of processes to run on a personal system, but expect t
 ```
 python3 train-mario.py
 ```
-One test processes is created along with the rest train processes. Test stores data in a CSV file which can be plotted later.
+The program works on random and non-random processes so that the training converges faster. By default there are two non-random processes whcih can be changed using args.
+1 test process is created with remaining train processes. Test stores data in a CSV file inside save folder, which can be plotted later. 
+
 More arguments are mentioned in the file.
 
 ## Results
@@ -45,6 +48,6 @@ After ~20 hours of training on 8 processes (7 Train, 1 Test) the game converges.
 
 ![](video/mario-level1.gif)
 
-## References
+## Repository References
 This project heavily relied on [ikostrikov/pytorch-a3c](https://github.com/ikostrikov/pytorch-a3c).
 
