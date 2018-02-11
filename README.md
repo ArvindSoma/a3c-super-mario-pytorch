@@ -3,7 +3,8 @@
 This project is based on the implementation of the paper [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783) using custom training modifications. This project was created for the course [Deep Learning for Computer Vision](https://vision.in.tum.de/teaching/ws2017/dl4cv) held at TUM.
 
 
-<img src="video/mario-level1.gif" width="300" height="270" border="10">    <img src="graphs/mario_train.jpeg" width="400" height="270"  border="10">
+<img src="video/mario-level1.gif" width="300" height="270" border="5">    
+
 
 ## Prerequisites
 - Python3.5+
@@ -44,9 +45,9 @@ python3 train-mario.py --num-processes 2 --non-sample 1
 
 This command requires atleast a 2-Core system with 4GB memory and 2GB GPU memory.
 
-1 test process is created with remaining train processes. Test stores data in a CSV file inside save folder, which can be plotted later
+1 test process is created with remaining train processes. Test stores data in a CSV file inside *save* folder, which can be plotted later
 
-The training process uses random and non-random processes so that it converges faster. By default there are two non-random processes, whcih can be changed using args.
+The training process uses random and non-random processes so that it converges faster. By default there are two non-random processes, which can be changed using args.
 The random processes behaves exactly like the non-random processes when there is a clear difference in the output probabilities of the network. The non-random training processes exactly mimmic the test output, which helps train the network better.
 
 Custom rewards are used to train the model more efficiently. They can be changed using the info dictionary or by modifying the wrappers file in *common/atari_wrappers.py*
@@ -55,6 +56,7 @@ More arguments are mentioned in the file *train-mario.py*.
 
 ## Results
 After ~20 hours of training on 8 processes (7 Train, 1 Test) the game converges.
+<img src="graphs/mario_train.jpeg" width="400" height="270"  border="5">
 
 The trained model is saved in *save/trained-models/mario_a3c_params.pkl*. Move it outside, to the *save* folder, to run the trained model.
 
