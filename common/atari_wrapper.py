@@ -29,8 +29,17 @@ class ProcessFrameMario(gym.Wrapper):
         self.prev_dist = 40
 
     def _step(self, action):
+        ''' 
+            Implementing custom rewards
+                Time = -0.1
+                Distance = +1 or 0 
+                Player Status = +/- 5
+                Score = 2.5 x [Increase in Score]
+                Done = +50 [Game Completed] or -50 [Game Incomplete]
+        '''
         obs, reward, done, info = self.env.step(action)
-        
+
+
         reward = min(max((info['distance'] - self.prev_dist), 0), 2)
         self.prev_dist = info['distance']
         
@@ -45,9 +54,9 @@ class ProcessFrameMario(gym.Wrapper):
 
         if done:
             if info['distance'] >= 3225:
-                reward += 20
+                reward += 50
             else:
-                reward -= 20
+                reward -= 50
 
         return _process_frame_mario(obs), reward, done, info
 

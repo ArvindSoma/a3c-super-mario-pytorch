@@ -115,7 +115,7 @@ def train(rank, args, shared_model, counter, lock, optimizer=None, select_sample
                 reason = str(episode_length)
 
             done = done or episode_length >= args.max_episode_length
-            reward = max(min(reward, 10), -10)
+            reward = max(min(reward, 50), -50)
 
             with lock:
                 counter.value += 1
