@@ -56,7 +56,15 @@ More arguments are mentioned in the file *train-mario.py*.
 
 ## Results
 After ~20 hours of training on 8 processes (7 Train, 1 Test) the game converges.
+
 <img src="graphs/mario_train.jpeg" width="400" height="270"  border="5">
+
+Custom rewards used:
+- Time = -0.1
+- Distance = +1 or 0 
+- Player Status = +/- 5
+- Score = 2.5 x [Increase in Score]
+- Done = +20 [Game Completed] or -20 [Game Incomplete]
 
 The trained model is saved in *save/trained-models/mario_a3c_params.pkl*. Move it outside, to the *save* folder, to run the trained model.
 
