@@ -1,6 +1,6 @@
 # Reinforcement Learning for Super Mario Bros using A3C on GPU
 
-This project is based on the paper [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783) with custom training modifications. This project was created for the course [Deep Learning for Computer Vision](https://vision.in.tum.de/teaching/ws2017/dl4cv) held at TUM.
+This project is based on the paper [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783), with custom training modifications. This project was created for the course [Deep Learning for Computer Vision](https://vision.in.tum.de/teaching/ws2017/dl4cv) held at TUM.
 
 
 <img src="video/mario-level1.gif" width="300" height="270" border="5">    
