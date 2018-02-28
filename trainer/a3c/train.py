@@ -69,7 +69,7 @@ def train(rank, args, shared_model, counter, lock, optimizer=None, select_sample
                 print ("Saving model at :" + args.save_path)            
                 torch.save(shared_model.state_dict(), args.save_path)
 
-        if num_iter % (args.save_interval * 2.5) == 0 and num_iter > 0 and rank == 1:
+        if num_iter % (args.save_interval * 2.5) == 0 and num_iter > 0 and rank == 1:    # Second saver in-case first processes crashes 
             print ("Saving model for process 1 at :" + args.save_path)            
             torch.save(shared_model.state_dict(), args.save_path)
             
@@ -105,14 +105,10 @@ def train(rank, args, shared_model, counter, lock, optimizer=None, select_sample
             log_prob = log_prob.gather(-1, Variable(action))
             
             action_out = ACTIONS[action][0, 0]
+            
             # print("Process: {} Action: {}".format(rank,  str(action_out)))
 
             state, reward, done, _ = env.step(action_out)
-
-            if done:
-                reason = 'done'
-            else:
-                reason = str(episode_length)
 
             done = done or episode_length >= args.max_episode_length
             reward = max(min(reward, 50), -50)
@@ -124,7 +120,7 @@ def train(rank, args, shared_model, counter, lock, optimizer=None, select_sample
                 episode_length = 0
                 env.change_level(0)
                 state = env.reset()
-                print ("Process {} has completed with reason : {}.".format(rank, reason))
+                print ("Process {} has completed.".format(rank))
 
             env.locked_levels = [False] + [True] * 31
             state = torch.from_numpy(state)
@@ -161,7 +157,7 @@ def train(rank, args, shared_model, counter, lock, optimizer=None, select_sample
 
         total_loss = policy_loss + args.value_loss_coef * value_loss
         
-        print ("Process {} run has completed with loss :".format(rank), total_loss.data)
+        print ("Process {} loss :".format(rank), total_loss.data)
         # print("Process: {} Episode: {}".format(rank,  str(episode_length)))
         optimizer.zero_grad()
 
