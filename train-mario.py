@@ -33,7 +33,7 @@ parser.add_argument('--seed', type=int, default=1,
                     help='random seed (default: 4)')
 parser.add_argument('--num-processes', type=int, default=4,
                     help='how many training processes to use (default: 4)')
-parser.add_argument('--num-steps', type=int, default=200,
+parser.add_argument('--num-steps', type=int, default=50,
                     help='number of forward steps in A3C (default: 200)')
 parser.add_argument('--max-episode-length', type=int, default=1000000,
                     help='maximum length of an episode (default: 1000000)')
@@ -43,11 +43,11 @@ parser.add_argument('--no-shared', default=False,
                     help='use an optimizer without shared momentum.')
 parser.add_argument('--use-cuda',default=True,
                     help='run on gpu.')
-parser.add_argument('--save-interval',default=10,
+parser.add_argument('--save-interval', type=int, default=10,
                     help='model save interval (default: 10)')
 parser.add_argument('--save-path',default=SAVEPATH,
                     help='model save interval (default: {})'.format(SAVEPATH))
-parser.add_argument('--non-sample',default=2,
+parser.add_argument('--non-sample', type=int,default=2,
                     help='number of non sampling processes (default: 2)')
 
 mp = _mp.get_context('spawn')
@@ -88,12 +88,14 @@ if __name__ == '__main__':
     p.start()
     processes.append(p)
 
-    sample_val = int(args.num_processes - args.non_sample)
-
     num_procs = args.num_processes
-
+    no_sample = args.non_sample
+   
     if args.num_processes > 1:
         num_procs = args.num_processes - 1    
+
+    sample_val = num_procs - no_sample
+
 
     for rank in range(0, num_procs):
         if rank < sample_val:                           # select random action
