@@ -34,7 +34,7 @@ parser.add_argument('--seed', type=int, default=1,
 parser.add_argument('--num-processes', type=int, default=4,
                     help='how many training processes to use (default: 4)')
 parser.add_argument('--num-steps', type=int, default=50,
-                    help='number of forward steps in A3C (default: 200)')
+                    help='number of forward steps in A3C (default: 50)')
 parser.add_argument('--max-episode-length', type=int, default=1000000,
                     help='maximum length of an episode (default: 1000000)')
 parser.add_argument('--env-name', default='metaSuperMarioBros-1-1-v0',
