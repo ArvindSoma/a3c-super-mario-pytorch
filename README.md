@@ -8,8 +8,8 @@ This project is based on the paper [Asynchronous Methods for Deep Reinforcement 
 
 ## Prerequisites
 - Python3.5+
-- Pytorch
-- OpenAI Gym
+- PyTorch 0.3.0
+- OpenAI Gym <=0.9.5
 
 ## Getting Started
 Install the following packages using the given commands
